@@ -1,0 +1,87 @@
+baseURL = 'https://rik1001.github.io'
+languageCode = 'en-us'
+title = 'Astralis'
+theme = 'PaperMod'
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+enableEmoji = true
+
+[params]
+  env = 'production'
+  
+  # Fixed typos in the keywords
+  keywords = [
+    'Blog', 'Portfolio', 'Personal', 'Space', 'Time', 'Thoughts', 
+    'Science', 'Psychology', 'Human', 'Medical', 'Biology', 'Surgery', 
+    'Medicine', 'Anatomy', 'Physiology', 'Heart', 'Brain', 'Neuron', 'Life'
+  ]
+  
+  author = 'Rik'
+  defaultTheme = 'dark'
+  disableThemeToggle = true
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  [params.homeInfoParams]
+    Title = 'Welcome to Astralis'
+    Content = 'Your gateway drug for entering into a zone of thoughts and ideas that can only be limited by your imagination.'
+
+  [[params.socialIcons]]
+    name = "Github"
+    url = "https://github.com/r1k1001"
+
+  [[params.socialIcons]]
+    name = "Telegram"
+    url = "https://t.me/r1k1001"
+
+  [[params.socialIcons]]
+    name = "Email"
+    url = "mailto:r1k10012006@protonmail.com"
+
+  [params.assets]
+    ##favicon = '/favicon.ico'
+    ##favicon16x16 = '/favicon-16x16.png'
+    ##favicon32x32 = '/favicon-32x32.png'
+    ##apple_touch_icon = '/apple-touch-icon.png'
+    ##safari_pinned_tab = '/safari-pinned-tab.svg'
+    ##customCSS = ["css/extended/custom-v2.css"]
+    
+[[menu.main]]
+  identifier = 'home'
+  name = 'Home'
+  url = '/'
+  weight = 10
+
+[[menu.main]]
+  identifier = 'about'
+  name = 'About'
+  url = '/about/'
+  weight = 20
+
+[[menu.main]]
+  identifier = 'archives'
+  name = 'Archives'
+  url = '/archives/'
+  weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
