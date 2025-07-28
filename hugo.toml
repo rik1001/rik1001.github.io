@@ -60,7 +60,7 @@ enableEmoji = true
     ##favicon32x32 = '/favicon-32x32.png'
     ##apple_touch_icon = '/apple-touch-icon.png'
     ##safari_pinned_tab = '/safari-pinned-tab.svg'
-    ##customCSS = ["css/extended/custom-v2.css"]
+    custom_css = ["css/extended/custom.css"]
     
 [[menu.main]]
   identifier = 'home'

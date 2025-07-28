@@ -1,0 +1,71 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Override all font families to use Poppins */
+:root {
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Apply Poppins to everything */
+* {
+    font-family: var(--font-family) !important;
+}
+
+/* Specific overrides for all major elements */
+body, html {
+    font-family: var(--font-family) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+    font-weight: 700 !important; /* Bold for headings */
+}
+
+p, span, div, a, li, td, th {
+    font-family: var(--font-family) !important;
+}
+
+/* Navigation and menu elements */
+.nav, .menu, .breadcrumbs {
+    font-family: var(--font-family) !important;
+}
+
+/* Post content and metadata */
+.post-title, .post-meta, .post-content {
+    font-family: var(--font-family) !important;
+}
+
+/* Code blocks - you might want to keep monospace for these, but if you want Poppins everywhere: */
+code, pre {
+    font-family: var(--font-family) !important;
+}
+
+/* Search and other interactive elements */
+input, textarea, button, select {
+    font-family: var(--font-family) !important;
+}
+
+/* Footer and other elements */
+footer, .footer {
+    font-family: var(--font-family) !important;
+}
+
+/* Make body text a bit bolder by default */
+body {
+    font-weight: 500 !important;
+}
+
+/* Extra bold for post titles and main headings */
+.post-title, h1 {
+    font-weight: 800 !important;
+}
+
+/* Archive and list pages */
+.archive-posts, .post-entry {
+    font-family: var(--font-family) !important;
+}
+
+/* Profile mode elements */
+.profile, .profile-title {
+    font-family: var(--font-family) !important;
+}
