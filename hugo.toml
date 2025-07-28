@@ -43,7 +43,7 @@ enableEmoji = true
 
   [[params.socialIcons]]
     name = "Github"
-    url = "https://github.com/r1k1001"
+    url = "https://github.com/rik1001"
 
   [[params.socialIcons]]
     name = "Telegram"
