@@ -12,7 +12,6 @@ enableEmoji = true
 [params]
   env = 'production'
   
-  # Fixed typos in the keywords
   keywords = [
     'Blog', 'Portfolio', 'Personal', 'Space', 'Time', 'Thoughts', 
     'Science', 'Psychology', 'Human', 'Medical', 'Biology', 'Surgery', 
