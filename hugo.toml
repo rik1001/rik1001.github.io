@@ -74,10 +74,28 @@ enableEmoji = true
   weight = 20
 
 [[menu.main]]
-  identifier = 'archives'
+  identifier = 'projects'
+  name = 'Projects'
+  url = '/projects/'
+  weight = 25
+
+[[menu.main]]
+  identifier = 'archive'
   name = 'Archives'
   url = '/archives/'
   weight = 30
+
+[[menu.main]]
+  identifier = 'contact'
+  name = 'Contact'
+  url = '/contact/'
+  weight = 35
+
+[[menu.main]]
+  identifier = 'privacy'
+  name = 'Privacy'
+  url = '/privacy/'
+  weight = 40
 
 [markup]
   [markup.goldmark]
