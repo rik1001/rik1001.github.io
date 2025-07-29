@@ -54,11 +54,11 @@ enableEmoji = true
     url = "mailto:r1k10012006@protonmail.com"
 
   [params.assets]
-    ##favicon = '/favicon.ico'
-    ##favicon16x16 = '/favicon-16x16.png'
-    ##favicon32x32 = '/favicon-32x32.png'
-    ##apple_touch_icon = '/apple-touch-icon.png'
-    ##safari_pinned_tab = '/safari-pinned-tab.svg'
+    favicon = '/favicon.ico'
+    favicon16x16 = '/favicon-16x16.png'
+    favicon32x32 = '/favicon-32x32.png'
+    apple_touch_icon = '/apple-touch-icon.png'
+    safari_pinned_tab = '/safari-pinned-tab.svg'
     custom_css = ["css/extended/custom.css"]
     
 [[menu.main]]
