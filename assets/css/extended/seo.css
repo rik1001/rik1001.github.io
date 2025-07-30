@@ -166,28 +166,6 @@ code {
     font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
-.toc {
-    background: var(--code-bg);
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-}
-
-.toc ul {
-    list-style: none;
-    padding-left: 1rem;
-}
-
-.toc a {
-    text-decoration: none;
-    display: block;
-    padding: 0.25rem 0;
-}
-
-.toc a:hover {
-    color: var(--theme);
-}
-
 .reading-progress {
     position: fixed;
     top: 0;
