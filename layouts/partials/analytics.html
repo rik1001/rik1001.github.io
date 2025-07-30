@@ -1,0 +1,191 @@
+{{ if .Site.Params.analytics.enabled }}
+
+{{ if .Site.Params.analytics.google }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics.google }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+
+  gtag('config', '{{ .Site.Params.analytics.google }}', {
+    'anonymize_ip': true,
+    'respect_dnt': true,
+    'allow_google_signals': false,
+    'allow_ad_personalization_signals': false,
+    'cookie_expires': 60 * 60 * 24 * 30, // 30 days
+    'send_page_view': true
+  });
+
+
+  gtag('event', 'page_view', {
+    'page_title': '{{ .Title }}',
+    'page_location': '{{ .Permalink }}',
+    'content_group1': '{{ .Section | title }}'
+  });
+</script>
+{{ end }}
+
+{{ if .Site.Params.analytics.plausible }}
+<script defer data-domain="{{ .Site.Params.analytics.plausible.domain }}" src="https://plausible.io/js/plausible.js"></script>
+<script>
+  window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+  
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.hostname !== window.location.hostname) {
+      plausible('Outbound Link', {props: {url: link.href}});
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.href.startsWith('mailto:')) {
+      plausible('Email Click');
+    }
+  });
+</script>
+{{ end }}
+
+{{ if .Site.Params.analytics.simple }}
+<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+{{ end }}
+
+{{ if .Site.Params.analytics.custom }}
+<script>
+(function() {
+  'use strict';
+  
+  if (navigator.doNotTrack === '1' || window.doNotTrack === '1') {
+    return;
+  }
+
+  function trackPageView() {
+    const data = {
+      url: window.location.pathname,
+      referrer: document.referrer,
+      title: document.title,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
+    };
+
+    fetch('/api/analytics', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    }).catch(() => {
+    });
+  }
+
+  if ('PerformanceObserver' in window) {
+    const observer = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      entries.forEach((entry) => {
+        if (entry.entryType === 'navigation') {
+          const data = {
+            type: 'performance',
+            metric: 'navigation',
+            value: {
+              domContentLoaded: entry.domContentLoadedEventEnd - entry.domContentLoadedEventStart,
+              loadComplete: entry.loadEventEnd - entry.loadEventStart,
+              firstByte: entry.responseStart - entry.requestStart
+            },
+            url: window.location.pathname,
+            timestamp: new Date().toISOString()
+          };
+          
+          fetch('/api/analytics', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          }).catch(() => {});
+        }
+      });
+    });
+    
+    observer.observe({ entryTypes: ['navigation'] });
+  }
+
+  if ('web-vitals' in window) {
+    import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      function sendToAnalytics(metric) {
+        const data = {
+          type: 'web-vital',
+          metric: metric.name,
+          value: metric.value,
+          url: window.location.pathname,
+          timestamp: new Date().toISOString()
+        };
+        
+        fetch('/api/analytics', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(() => {});
+      }
+
+      getCLS(sendToAnalytics);
+      getFID(sendToAnalytics);
+      getFCP(sendToAnalytics);
+      getLCP(sendToAnalytics);
+      getTTFB(sendToAnalytics);
+    });
+  }
+
+  trackPageView();
+
+  let currentPath = window.location.pathname;
+  const observer = new MutationObserver(() => {
+    if (window.location.pathname !== currentPath) {
+      currentPath = window.location.pathname;
+      trackPageView();
+    }
+  });
+  
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+{{ end }}
+
+{{ end }}
+
+<script>
+window.addEventListener('load', function() {
+  if ('performance' in window) {
+    const perfData = performance.getEntriesByType('navigation')[0];
+    
+    const metrics = {
+      dns: perfData.domainLookupEnd - perfData.domainLookupStart,
+      tcp: perfData.connectEnd - perfData.connectStart,
+      request: perfData.responseStart - perfData.requestStart,
+      response: perfData.responseEnd - perfData.responseStart,
+      dom: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+      load: perfData.loadEventEnd - perfData.loadEventStart,
+      total: perfData.loadEventEnd - perfData.navigationStart
+    };
+    
+    console.log('Performance metrics:', metrics);
+  }
+});
+
+window.addEventListener('error', function(e) {
+  const errorData = {
+    message: e.message,
+    filename: e.filename,
+    lineno: e.lineno,
+    colno: e.colno,
+    url: window.location.pathname,
+    userAgent: navigator.userAgent,
+    timestamp: new Date().toISOString()
+  };
+  
+  console.error('JavaScript error tracked:', errorData);
+});
+</script>
