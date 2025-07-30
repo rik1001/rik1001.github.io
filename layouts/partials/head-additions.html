@@ -1,0 +1,81 @@
+<link rel="preload" href="/fonts/Poppins-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/css/extended/custom.css" as="style">
+
+<link rel="dns-prefetch" href="//github.com">
+<link rel="dns-prefetch" href="//t.me">
+
+<link rel="preconnect" href="https://github.com" crossorigin>
+
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="keywords" content="{{ delimit .Site.Params.keywords ", " }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="en_US">
+{{ with .Site.Params.images }}
+<meta property="og:image" content="{{ index . 0 | absURL }}">
+{{ end }}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ with .Site.Params.images }}
+<meta name="twitter:image" content="{{ index . 0 | absURL }}">
+{{ end }}
+
+<meta name="theme-color" content="#1a1a1a">
+<meta name="msapplication-TileColor" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+{{ end }}
+
+{{ partial "structured-data.html" . }}
+
+<link rel="prefetch" href="/about/">
+<link rel="prefetch" href="/projects/">
+<link rel="prefetch" href="/contact/">
+
+<style>
+body { 
+    font-family: 'Poppins', sans-serif !important; 
+    font-weight: 600 !important;
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+<script>
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const link = entry.target;
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('/')) {
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'prefetch';
+                    preloadLink.href = href;
+                    document.head.appendChild(preloadLink);
+                }
+            }
+        });
+    });
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="/"]').forEach(link => {
+            observer.observe(link);
+        });
+    });
+}
+</script>
