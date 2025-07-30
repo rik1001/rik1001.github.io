@@ -9,16 +9,41 @@ buildFuture = false
 buildExpired = false
 enableEmoji = true
 
+canonifyURLs = true
+enableGitInfo = true
+enableInlineShortcodes = true
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+  
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    contentDir = 'content'
+    disabled = false
+    languageCode = 'en-US'
+    languageDirection = 'ltr'
+    languageName = 'English'
+    title = 'Astralis'
+    weight = 1
+
 [params]
   env = 'production'
   
   keywords = [
     'Blog', 'Portfolio', 'Personal', 'Space', 'Time', 'Thoughts', 
     'Science', 'Psychology', 'Human', 'Medical', 'Biology', 'Surgery', 
-    'Medicine', 'Anatomy', 'Physiology', 'Heart', 'Brain', 'Neuron', 'Life'
-  ]
+    'Medicine', 'Anatomy', 'Physiology', 'Heart', 'Brain', 'Neuron', 'Life',
+    'Rik', 'Astralis', 'Research', 'Neuroscience', 'Discovery', 'Innovation',
+    'Scientific Writing', 'Medical Research', 'Consciousness', 'Cosmos' ]
   
   author = 'Rik'
+  description = 'Your gateway drug for entering into a zone of thoughts and ideas that can only be limited by your imagination.'
+  images = ['/images/og-image.png']
   defaultTheme = 'dark'
   disableThemeToggle = true
   ShowReadingTime = true
@@ -36,6 +61,7 @@ enableEmoji = true
   hideSummary = false
   showtoc = false
   tocopen = false
+  enableInlineCSS = true
 
   [params.homeInfoParams]
     Title = 'Welcome to Astralis'
@@ -44,14 +70,17 @@ enableEmoji = true
   [[params.socialIcons]]
     name = "Github"
     url = "https://github.com/rik1001"
+    title = "Visit Rik's GitHub Profile"
 
   [[params.socialIcons]]
     name = "Telegram"
     url = "https://t.me/r1k1001"
-
+    title = "Connect with Rik on Telegram"
+    
   [[params.socialIcons]]
     name = "Email"
-    url = "mailto:r1k10012006@protonmail.com"
+    url = "mailto:rik10012006@protonmail.com"
+    title = "Send an email to Rik"
 
   [params.assets]
     favicon = '/favicon.ico'
@@ -59,46 +88,89 @@ enableEmoji = true
     favicon32x32 = '/favicon-32x32.png'
     apple_touch_icon = '/apple-touch-icon.png'
     safari_pinned_tab = '/safari-pinned-tab.svg'
-    custom_css = ["css/extended/custom.css"]
+    custom_css = ["css/extended/custom.css", "css/extended/seo.css"]
     
 [[menu.main]]
   identifier = 'home'
   name = 'Home'
   url = '/'
   weight = 10
+  [menu.main.params]
+    description = 'Return to Astralis homepage'
 
 [[menu.main]]
   identifier = 'about'
   name = 'About'
   url = '/about/'
   weight = 20
+  [menu.main.params]
+    description = 'Learn about me and my mission'
 
 [[menu.main]]
   identifier = 'projects'
   name = 'Projects'
   url = '/projects/'
   weight = 25
+  [menu.main.params]
+    description = 'Explore current and future projects'
 
 [[menu.main]]
   identifier = 'archive'
   name = 'Archives'
   url = '/archives/'
   weight = 30
+  [menu.main.params]
+    description = 'Browse all posts and articles'
 
 [[menu.main]]
   identifier = 'contact'
   name = 'Contact'
   url = '/contact/'
   weight = 35
+  [menu.main.params]
+    description = 'Connect with me'
 
 [[menu.main]]
   identifier = 'privacy'
   name = 'Privacy'
   url = '/privacy/'
   weight = 40
-
+  
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = false
+    style = 'github'
+    tabWidth = 4
 
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
+  page = ['HTML']
+  section = ['HTML', 'RSS']
+  
+[params.rss]
+  disable = false
+  
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = false
+  [[related.indices]]
+    name = 'keywords'
+    weight = 100
+  [[related.indices]]
+    name = 'tags'
+    weight = 80
+  [[related.indices]]
+    name = 'date'
+    weight = 10
