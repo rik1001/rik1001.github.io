@@ -1,0 +1,202 @@
+<!DOCTYPE=HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost In The Void | Astralis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            background-color: #1d1e20;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .star.small {
+            width: 2px;
+            height: 2px;
+        }
+        
+        .star.medium {
+            width: 3px;
+            height: 3px;
+        }
+        
+        .star.large {
+            width: 4px;
+            height: 4px;
+        }
+        
+        @keyframes starTwinkle {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .error-code {
+            font-size: clamp(120px, 20vw, 300px);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 0.8;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .main-text {
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 600;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .sub-text {
+            font-size: clamp(14px, 2.5vw, 20px);
+            font-weight: 400;
+            color: #969798;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .home-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: transparent;
+            color: white;
+            text-decoration: none;
+            border: 4px solid white;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+        
+        .home-button:hover {
+            background-color: white;
+            color: #1d1e20;
+            transform: translateY(-2px);
+      }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 0 20px;
+            }
+            
+            .sub-text {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars-container" id="starsContainer"></div>
+    
+    <div class="content">
+        <div class="error-code">404</div>
+        <div class="main-text">Lost In The Void</div>
+        <div class="sub-text">It Seems You've Drifted Into An Uncharted Region Of The Cosmos</div>
+        <a href="/" class="home-button">Return To Earth</a>
+    </div>
+
+    <script>
+        function createStar() {
+        const starsContainer = document.getElementById('starsContainer');
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        const sizes = ['small', 'medium', 'large'];
+        const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+        star.classList.add(randomSize);
+
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+
+        const duration = 2 + Math.random() * 4; // 2-6 seconds
+        star.style.animation = `starTwinkle ${duration}s ease-in-out`;
+
+        starsContainer.appendChild(star);
+
+        setTimeout(() => {
+            if (star.parentNode) {
+                star.parentNode.removeChild(star);
+            }
+        }, duration * 1000);
+    }
+
+    function startStarAnimation() {
+        let starCount = 0;
+        const totalStars = 1000;
+
+        function createStarWithDelay() {
+            if (starCount < totalStars) {
+                createStar();
+                starCount++;
+                // Gradually increase the delay between each star creation
+                setTimeout(createStarWithDelay, Math.random() * 100 + 100); // Random delay between 100ms and 200ms
+            }
+        }
+
+        createStarWithDelay(); // Start the gradual star creation
+    }
+
+    document.addEventListener('DOMContentLoaded', startStarAnimation);
+        
+    </script>
+</body>
+</html>
