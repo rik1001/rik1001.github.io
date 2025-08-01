@@ -1,0 +1,68 @@
+.toc a:focus:not(:focus-visible) {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.toc a:focus-visible {
+    outline: 2px solid var(--theme);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+a:focus:not(:focus-visible) {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--theme);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+.toc a,
+.toc a:active,
+.toc a:focus {
+    border: none !important;
+    background: transparent !important;
+}
+
+.toc a:hover {
+    /*color: var(--theme);*/
+    text-decoration: underline 1.5px;
+    text-underline-offset: 4px;
+    /*background: transparent !important;*/
+    border: none !important;
+}
+
+.toc ul li a {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.toc ul li a:focus:not(:focus-visible) {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.post-content .toc a:focus,
+.post-content .toc a:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.toc a {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0.25rem 0;
+    margin: 0;
+}
