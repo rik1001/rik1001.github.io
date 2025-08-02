@@ -1,10 +1,40 @@
-<!DOCTYPE=HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Lost In The Void | Astralis</title>
     <style>
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/Poppins-Regular.woff2') format('woff2'),
+                 url('/fonts/Poppins-Regular.woff') format('woff'),
+                 url('/fonts/Poppins-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('/fonts/Poppins-SemiBold.woff2') format('woff2'),
+                 url('/fonts/Poppins-SemiBold.woff') format('woff'),
+                 url('/fonts/Poppins-SemiBold.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url('/fonts/Poppins-Black.woff2') format('woff2'),
+                 url('/fonts/Poppins-Black.woff') format('woff'),
+                 url('/fonts/Poppins-Black.ttf') format('truetype');
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -120,7 +150,7 @@
             background-color: white;
             color: #1d1e20;
             transform: translateY(-2px);
-      }
+        }
         
         @keyframes fadeInUp {
             from {
@@ -156,47 +186,45 @@
 
     <script>
         function createStar() {
-        const starsContainer = document.getElementById('starsContainer');
-        const star = document.createElement('div');
-        star.className = 'star';
+            const starsContainer = document.getElementById('starsContainer');
+            const star = document.createElement('div');
+            star.className = 'star';
 
-        const sizes = ['small', 'medium', 'large'];
-        const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-        star.classList.add(randomSize);
+            const sizes = ['small', 'medium', 'large'];
+            const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+            star.classList.add(randomSize);
 
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
 
-        const duration = 2 + Math.random() * 4; // 2-6 seconds
-        star.style.animation = `starTwinkle ${duration}s ease-in-out`;
+            const duration = 2 + Math.random() * 4; // 2-6 seconds
+            star.style.animation = `starTwinkle ${duration}s ease-in-out`;
 
-        starsContainer.appendChild(star);
+            starsContainer.appendChild(star);
 
-        setTimeout(() => {
-            if (star.parentNode) {
-                star.parentNode.removeChild(star);
-            }
-        }, duration * 1000);
-    }
-
-    function startStarAnimation() {
-        let starCount = 0;
-        const totalStars = 1000;
-
-        function createStarWithDelay() {
-            if (starCount < totalStars) {
-                createStar();
-                starCount++;
-                // Gradually increase the delay between each star creation
-                setTimeout(createStarWithDelay, Math.random() * 100 + 100); // Random delay between 100ms and 200ms
-            }
+            setTimeout(() => {
+                if (star.parentNode) {
+                    star.parentNode.removeChild(star);
+                }
+            }, duration * 1000);
         }
 
-        createStarWithDelay(); // Start the gradual star creation
-    }
+        function startStarAnimation() {
+            let starCount = 0;
+            const totalStars = 1000;
 
-    document.addEventListener('DOMContentLoaded', startStarAnimation);
-        
+            function createStarWithDelay() {
+                if (starCount < totalStars) {
+                    createStar();
+                    starCount++;
+                    setTimeout(createStarWithDelay, Math.random() * 100 + 100);
+                }
+            }
+
+            createStarWithDelay();
+        }
+
+        document.addEventListener('DOMContentLoaded', startStarAnimation);
     </script>
 </body>
 </html>
