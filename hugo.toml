@@ -62,6 +62,16 @@ defaultContentLanguageInSubdir = false
   showtoc = false
   tocopen = false
   enableInlineCSS = true
+  
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.4
+  minMatchCharLength = 2
+  limit = 10
+  keys = ["title", "permalink", "summary", "content"]
 
   [params.homeInfoParams]
     Title = 'Welcome to Astralis'
@@ -113,6 +123,14 @@ defaultContentLanguageInSubdir = false
   weight = 25
   [menu.main.params]
     description = 'Explore current and future projects'
+    
+[[menu.main]]
+  identifier = 'search'
+  name = 'Search'
+  url = '/search/'
+  weight = 27
+  [menu.main.params]
+    description = 'Search through all posts and content'
 
 [[menu.main]]
   identifier = 'archive'
